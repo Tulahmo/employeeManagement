@@ -1,6 +1,8 @@
 import { LitElement, html } from 'lit';
 import store from '../store/store';
-import { deleteEmployee, addEmployee } from '../store/actions';
+import { deleteEmployee} from '../store/actions';
+import { Router } from '@vaadin/router';
+
 
 class EmployeeList extends LitElement {
   static properties = {
@@ -58,6 +60,7 @@ class EmployeeList extends LitElement {
   handleDelete(employeeId) {
     const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
     if (confirmDelete) {
+      console.log('Deleting employee with ID:', employeeId);  
       store.dispatch(deleteEmployee(employeeId));
     }
     this.requestUpdate();
@@ -92,7 +95,7 @@ class EmployeeList extends LitElement {
         <ul>
           ${this.paginatedEmployees.map(emp => html`
             <li>
-              ${emp.firstName} ${emp.lastName} - ${emp.position}
+              ${emp.firstName} ${emp.lastName} - ${emp.position} ${emp.employmentDate} ${emp.dateOfBirth} ${emp.phoneNumber} ${emp.email} ${emp.department}
               <button @click="${() => this.handleEdit(emp.id)}">Edit</button>
               <button @click="${() => this.handleDelete(emp.id)}">Delete</button>
             </li>
@@ -101,14 +104,14 @@ class EmployeeList extends LitElement {
       ` : html`
         <table>
           <tr>
-            <th>Name</th><th>Position</th><th>Actions</th>
+            <th>Name</th><th>Position</th><th>Employment Date</th><th>Date of Birth</th><th>Phone Number</th><th>Email</th><th>Department</th><th>Actions</th>
           </tr>
           ${this.paginatedEmployees.map(emp => html`
             <tr>
               <td>${emp.firstName} ${emp.lastName}</td>
-              <td>${emp.position}</td>
+              <td>${emp.position}</td><td>${emp.employmentDate}</td> <td>${emp.dateOfBirth}</td><td>${emp.phoneNumber}</td><td>${emp.email}</td>  <td>${emp.department}</td>                    
               <td>
-                <button @click="${() => this.editEmployee(emp)}">Edit</button>
+                <button @click="${() => this.handleEdit(emp.id)}">Edit</button>
                 <button @click="${() => this.handleDelete(emp.id)}">Delete</button>
               </td>
             </tr>
