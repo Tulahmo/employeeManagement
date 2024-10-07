@@ -115,8 +115,6 @@ class EmployeeForm extends LitElement {
       // Dispatch an add action
       store.dispatch(addEmployee(employeeData));
       console.log('Updated Store:', store.getState());
-        // Redirect to employee list 
-      // window.location.href = 'employees';
       console.log('Store state after adding employee:', store.getState());
 
   // Navigate to the employee list page (using Vaadin Router)
