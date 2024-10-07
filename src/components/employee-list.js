@@ -118,5 +118,4 @@ class EmployeeList extends LitElement {
     `;
   }
 }
-
 customElements.define('employee-list', EmployeeList);
