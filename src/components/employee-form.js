@@ -112,8 +112,14 @@ class EmployeeForm extends LitElement {
        store.dispatch(updateEmployee({ ...this.employee, id: this.employeeId }));
     } else {
       console.log('Employee Data:', employeeData);
+      const employeeId = Date.now();  // Using timestamp as a unique ID for simplicity
+
+      const newEmployee = {
+        ...employeeData,
+        id: employeeId  // Assign the generated employeeId
+      };
       // Dispatch an add action
-      store.dispatch(addEmployee(employeeData));
+      store.dispatch(addEmployee(newEmployee));
       console.log('Updated Store:', store.getState());
       console.log('Store state after adding employee:', store.getState());
 
