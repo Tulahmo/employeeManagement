@@ -56,7 +56,10 @@ class EmployeeList extends LitElement {
   }
 
   handleDelete(employeeId) {
-    store.dispatch(deleteEmployee(employeeId)); // Dispatch delete action
+    const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
+    if (confirmDelete) {
+      store.dispatch(deleteEmployee(employeeId));
+    }
     this.requestUpdate();
     console.log('Employee List End:', this.employees);
   }
