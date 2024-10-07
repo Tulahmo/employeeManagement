@@ -11,9 +11,10 @@ const initialState = {
         return {
           ...state,
           employees: state.employees.map(emp =>
-            emp.id === action.payload.id ? action.payload : emp
+            emp.id === action.payload.id ? action.payload.employee : emp
           )
         };
+
       case 'DELETE_EMPLOYEE':
         return {
           ...state,
