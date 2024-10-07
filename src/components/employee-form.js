@@ -40,7 +40,7 @@ class EmployeeForm extends LitElement {
   
         // Get the employee data from the store and populate form
         const state = store.getState();
-        const employeeToEdit = state.employees.find(emp => emp.id == this.employeeId);
+        const employeeToEdit = state.employees.find(emp => emp.id == this.employeeId)||{};
   
         if (employeeToEdit) {
           this.employee = { ...employeeToEdit };
@@ -109,7 +109,8 @@ class EmployeeForm extends LitElement {
 
     if (this.isEditMode) {
       // Dispatch an edit action
-       store.dispatch(updateEmployee({ ...this.employee, id: this.employeeId }));
+       store.dispatch(editEmployee( this.employee, this.employeeId  ));
+       Router.go('/employees');
     } else {
       console.log('Employee Data:', employeeData);
       const employeeId = Date.now();  // Using timestamp as a unique ID for simplicity
