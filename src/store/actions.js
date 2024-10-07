@@ -13,7 +13,7 @@ export const editEmployee = (employee) => ({
   payload: employee,
 });
 
-export const deleteEmployee = (id) => ({
+export const deleteEmployee = (employeeId) => ({
   type: DELETE_EMPLOYEE,
-  payload: { id },
+  payload:  employeeId ,
 });
